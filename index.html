@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#123c66" />
+  <title>NCBE X Campaign</title>
+  <style>
+/* NCBE colourful visual refresh */
+:root{--navy:#102a43;--blue:#1769aa;--ink:#17212b;--muted:#64748b;--line:#d9e5f0}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:Inter,system-ui,sans-serif;background:linear-gradient(135deg,#e0f2fe,#f5e8ff 48%,#fff1dc)}
+.app-shell{max-width:720px;margin:auto;min-height:100vh;background:#fafcff;box-shadow:0 0 50px #94a3b855}
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#092c4c,#1769aa 52%,#7c3aed);color:#fff;padding:30px 22px;display:flex;gap:15px;align-items:center}.badge{width:64px;height:64px;border-radius:20px;background:linear-gradient(135deg,#fff,#dbeafe);color:#102a43;display:grid;place-items:center;font-weight:900;font-size:18px;box-shadow:0 8px 24px #0003}h1{font-size:25px;margin:0}.hero p{margin:4px 0 0;color:#dbeafe}
+main{padding:16px}.campaign-card,.step-card,.help-card,.campaign-focus{background:#fff;border:1px solid #fff;border-radius:20px;box-shadow:0 8px 24px #47556914;margin-bottom:15px}
+.campaign-card{padding:22px;background:linear-gradient(135deg,#fff,#eff8ff 55%,#f8edff)}.campaign-label{font-size:11px;font-weight:900;letter-spacing:1.3px;color:#7c3aed}h2{font-size:25px;margin:8px 0;color:#102a43}.hashtag{display:inline-block;background:linear-gradient(90deg,#1769aa,#7c3aed);color:#fff;padding:7px 13px;border-radius:999px;font-weight:900}.campaign-card p,.campaign-focus p{color:var(--muted);line-height:1.55}
+.campaign-focus{padding:18px;background:linear-gradient(135deg,#fff7e8,#fff 48%,#f5eeff)}.campaign-focus h3{margin:0 0 11px}.focus-tags{display:flex;flex-wrap:wrap;gap:8px}.focus-tags span{padding:7px 11px;border-radius:999px;color:#fff;font-size:13px;font-weight:800;background:linear-gradient(135deg,#f59e0b,#ec4899)}.focus-tags span:nth-child(2){background:linear-gradient(135deg,#7c3aed,#a842c4)}.focus-tags span:nth-child(3){background:linear-gradient(135deg,#1769aa,#06b6d4)}
+.step-card{padding:18px;display:flex;gap:14px}.step-card.disabled{opacity:.42;pointer-events:none}.step-number{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#1769aa,#7c3aed);color:#fff;display:grid;place-items:center;font-weight:900;flex:none}.step-content{flex:1;min-width:0}.step-content>p{color:var(--muted)}
+.post-list,.actions{display:grid;gap:10px}.post-option{width:100%;background:linear-gradient(135deg,#fff,#f7fbff);border:1px solid var(--line);padding:14px;text-align:left;border-radius:15px;display:flex;align-items:center;gap:12px;cursor:pointer;color:inherit}.post-option.selected{border-color:#8b5cf6;background:linear-gradient(135deg,#eff6ff,#f5edff)}.post-icon{width:39px;height:39px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,#17212b,#334155);color:#fff}.post-option b,.post-option small{display:block}.post-option small{color:var(--muted);font-size:12px;margin-top:3px}.chevron{margin-left:auto;font-size:28px;color:#7c3aed}
+.action{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;text-align:left;display:grid;grid-template-columns:43px 1fr;align-items:center;cursor:pointer;color:inherit}.action span{grid-row:span 2;width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;font-size:21px}.action.reply span{background:linear-gradient(135deg,#3478f6,#06b6d4)}.action.quote span{background:linear-gradient(135deg,#a842c4,#ec4899)}.action.repost span{background:linear-gradient(135deg,#18a873,#84cc16)}.action small{color:var(--muted)}.action.selected{background:linear-gradient(135deg,#f8fbff,#f7f0ff);box-shadow:0 0 0 2px #7c3aed22}
+textarea{width:100%;min-height:145px;border:1px solid #cbd9e6;border-radius:15px;padding:14px;font:inherit;background:#fbfdff}.composer-meta{display:flex;justify-content:space-between;padding-top:8px;color:var(--muted);font-size:13px}.text-button{border:0;background:none;color:#7c3aed;font-weight:800}.button-row{display:flex;gap:9px;margin-top:16px}.button-row button{flex:1;border-radius:14px;padding:14px 10px;font-weight:900;font-size:15px;cursor:pointer}.primary{border:0;background:linear-gradient(135deg,#1769aa,#7c3aed);color:#fff}.secondary{background:#fff;border:1px solid var(--line);color:#102a43}.notice{font-size:12px;color:var(--muted)}.repost-panel{background:linear-gradient(135deg,#e9fff6,#f5fff1);border:1px solid #bdebd9;border-radius:14px;padding:14px}.help-card{padding:17px 19px;color:var(--muted);line-height:1.6;background:linear-gradient(135deg,#fff,#f4f9ff)}.help-card summary{font-weight:900;color:#102a43}footer{text-align:center;padding:27px;color:var(--muted);font-size:13px;background:linear-gradient(135deg,#eaf4ff,#f7edff)}footer strong{color:#1769aa}.hidden{display:none!important}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);opacity:0;background:#17212b;color:#fff;padding:11px 17px;border-radius:999px;transition:.2s}.toast.show{opacity:1;transform:translate(-50%,0)}@media(max-width:480px){main{padding:11px}.hero{padding:24px 17px}.button-row{flex-direction:column}h1{font-size:22px}h2{font-size:22px}}
+
+/* Reliability + stronger colour layer */
+html,body{background:#eaf4ff!important}
+body{font-family:Inter,Arial,sans-serif!important}
+.hero{background:linear-gradient(135deg,#082f5b 0%,#1261a0 52%,#7c3aed 100%)!important}
+.campaign-card{background:linear-gradient(135deg,#ffffff 0%,#e9f6ff 58%,#f3e8ff 100%)!important}
+.campaign-focus{background:linear-gradient(135deg,#fff4db 0%,#ffffff 48%,#f2e9ff 100%)!important}
+.step-card{border:1px solid #dceaf7!important}
+.action{min-height:76px}
+@media(max-width:480px){
+  .actions{gap:10px}
+  .action{padding:13px 11px}
+  .hero{border-radius:0}
+}
+
+</style>
+
+<style>
+.ncbe-brand{
+  display:flex!important;
+  align-items:center!important;
+  gap:14px!important;
+  margin-bottom:18px!important;
+}
+.ncbe-logo{
+  width:64px!important;
+  height:64px!important;
+  object-fit:contain!important;
+  background:#fff!important;
+  border-radius:14px!important;
+  padding:4px!important;
+  box-shadow:0 8px 22px rgba(0,0,0,.18)!important;
+}
+.ncbe-brand-text{line-height:1!important;}
+.ncbe-main{
+  color:#ffffff!important;
+  font-size:34px!important;
+  font-weight:900!important;
+  letter-spacing:2px!important;
+}
+.ncbe-sub{
+  margin-top:8px!important;
+  color:#dceeff!important;
+  font-size:14px!important;
+  font-weight:700!important;
+  letter-spacing:.8px!important;
+}
+@media(max-width:480px){
+  .ncbe-logo{width:54px!important;height:54px!important;}
+  .ncbe-main{font-size:30px!important;}
+  .ncbe-sub{font-size:13px!important;}
+}
+</style>
+
+
+<style>
+/* FINAL BRANDING OVERRIDES */
+.hero{
+  min-height:190px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+.hero-content.official-logo-only{
+  width:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:28px 20px!important;
+}
+.official-logo-wrap{
+  width:122px!important;
+  height:122px!important;
+  padding:10px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:#fff!important;
+  border-radius:24px!important;
+  box-shadow:0 14px 34px rgba(0,0,0,.24)!important;
+}
+.official-ncbe-logo{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+}
+.ncbe-brand,.ncbe-logo,.ncbe-brand-text,.ncbe-main,.ncbe-sub{display:none!important}
+@media(max-width:480px){
+  .hero{min-height:170px!important}
+  .official-logo-wrap{width:105px!important;height:105px!important}
+}
+</style>
+
+
+<style>
+.custom-post-panel{
+  margin:16px 0 18px!important;
+  padding:16px!important;
+  border-radius:18px!important;
+  background:linear-gradient(135deg,#eef7ff,#f6efff)!important;
+  border:1px solid #d9e8f6!important;
+}
+.custom-post-panel label{
+  display:block!important;
+  font-weight:800!important;
+  margin-bottom:10px!important;
+}
+.custom-post-row{
+  display:flex!important;
+  gap:10px!important;
+}
+#customPostUrl{
+  flex:1!important;
+  min-width:0!important;
+  padding:13px 14px!important;
+  border:1px solid #cbd9e8!important;
+  border-radius:12px!important;
+  font-size:14px!important;
+  background:#fff!important;
+}
+#addCustomPost{
+  border:0!important;
+  border-radius:12px!important;
+  padding:0 16px!important;
+  font-weight:800!important;
+  cursor:pointer!important;
+  background:#1261a0!important;
+  color:#fff!important;
+}
+.custom-post-help{
+  margin:9px 0 0!important;
+  font-size:12px!important;
+  opacity:.72!important;
+}
+@media(max-width:480px){
+  .custom-post-row{flex-direction:column!important}
+  #addCustomPost{min-height:46px!important}
+}
+</style>
+
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+<div class="hero-content official-logo-only">
+  <div class="official-logo-wrap">
+    <img class="official-ncbe-logo"
+         src="https://pbs.twimg.com/profile_images/2014599379005358080/SEuJ2_mE.jpg"
+         alt="Official NCBE logo">
+  </div>
+</div>
+</header>
+
+    <main>
+      <section class="campaign-card">
+        <div class="campaign-label">OFFICIAL DIGITAL CAMPAIGN</div>
+        <h2 id="campaignTitle">NCBE Campaign</h2>
+        <div class="hashtag">#5DayBankingandFlairPLI #UFBU #NCBE</div>
+        <p id="campaignDescription">A coordinated NCBE Tripura social-media campaign supporting 5-Day Banking and opposing divisive PLI measures. Select a post, choose an action and participate on X.</p>
+      </section>
+
+      <section class="campaign-focus">
+      <h3>Campaign Focus</h3>
+      <div class="focus-tags"><span>5-Day Banking</span><span>Fair & Unified PLI</span><span>Unity of Bank Employees</span></div>
+      <p>Use respectful, issue-focused language. Review every post before publishing on X.</p>
+    </section>
+    <section class="step-card" id="step1">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Select campaign post</h3>
+          <p>Choose the post you want to support.</p>
+          
+<div class="custom-post-panel">
+  <label for="customPostUrl">Add a specific X post</label>
+  <div class="custom-post-row">
+    <input id="customPostUrl" type="url" placeholder="Paste an X post link here…" autocomplete="off">
+    <button id="addCustomPost" type="button">Add Post</button>
+  </div>
+  <p class="custom-post-help">Example: https://x.com/username/status/123456789</p>
+</div>
+
+<div id="postList" class="post-list"></div>
+        </div>
+      </section>
+
+      <section class="step-card disabled" id="step2">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Choose your action</h3>
+          <div class="actions">
+            <button class="action reply" data-action="reply"><span>↩</span><b>Reply</b><small>Respond to the selected post</small></button>
+            <button class="action quote" data-action="quote"><span>❝</span><b>Quote Post</b><small>Add your message and share it</small></button>
+            <button class="action repost" data-action="repost"><span>↻</span><b>Repost</b><small>Share the original post</small></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="step-card disabled" id="step3">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 id="composerHeading">Your campaign message</h3>
+          <div id="repostPanel" class="repost-panel hidden">
+            <p>A standard Repost does not need additional text. X will ask you to confirm the Repost.</p>
+          </div>
+          <div id="composerPanel">
+            <textarea id="messageBox" maxlength="280" aria-label="Campaign message"></textarea>
+            <div class="composer-meta"><span id="charCount">0 / 280</span><button id="newSuggestion" class="text-button">↻ New suggestion</button></div>
+          </div>
+          <div class="button-row">
+            <button id="copyButton" class="secondary">Copy text</button>
+            <button id="openXButton" class="primary">Continue to X ↗</button>
+          </div>
+          <p class="notice">NCBE does not post on your behalf. You review and confirm the final action in X.</p>
+        </div>
+      </section>
+
+      <details class="help-card">
+        <summary>How does this work?</summary>
+        <ol>
+          <li>Select one of the official campaign posts.</li>
+          <li>Choose Reply, Quote Post, or Repost.</li>
+          <li>Edit or regenerate the suggested text if desired.</li>
+          <li>Continue to X and review before posting.</li>
+        </ol>
+      </details>
+    </main>
+
+    <footer>
+      <strong>NCBE</strong> · National Confederation of Bank Employees<br>
+      <span>Campaign portal · #5DayBankingandFlairPLI #UFBU #NCBE</span>
+    </footer>
+  </div>
+  <div id="toast" class="toast"></div>
+<script>
+
+const posts = [
+  {name:"AIBEA Official", url:"https://x.com/AIBEAofficial/status/2093880785963303381", theme:"5-Day Banking", icon:"✦"},
+  {name:"Campaign Post", url:"https://x.com/idesibanda/status/2093186663413358792", theme:"Fair & Unified PLI", icon:"⚖"},
+  {name:"AIBOC IN", url:"https://x.com/aiboc_in/status/2093876993733578795", theme:"Unity of Bank Employees", icon:"✊"}
+];
+
+const templates = {
+ reply: [
+  "Strongly support the demand for 5-Day Banking and a fair, unified approach to PLI. Bank employees deserve dignity, work-life balance and equal treatment. #5DayBankingandFlairPLI #UFBU #NCBE",
+  "A united banking workforce needs fair policies, sustainable working conditions and respect for every employee. #5DayBankingandFlairPLI #UFBU #NCBE #5DayBanking",
+  "The time has come for meaningful work-life balance and a transparent, non-divisive PLI framework for all bank employees. #5DayBankingandFlairPLI #UFBU #NCBE"
+ ],
+ quote: [
+  "Supporting this important call for 5-Day Banking, fair and unified PLI, and the dignity of every bank employee. Unity and work-life balance must remain at the centre. #5DayBankingandFlairPLI #UFBU #NCBE",
+  "Bank employees stand for fairness, unity and sustainable working conditions. 5-Day Banking and a non-divisive PLI approach are important steps forward. #5DayBankingandFlairPLI #UFBU #NCBE",
+  "A stronger banking sector needs motivated employees, fair policies and better work-life balance. Supporting this campaign. #5DayBankingandFlairPLI #UFBU #NCBE"
+ ]
+};
+
+let selectedPost = null, selectedAction = null, suggestionIndex = 0;
+
+const postList = document.getElementById("postList");
+const step2 = document.getElementById("step2");
+const step3 = document.getElementById("step3");
+const messageBox = document.getElementById("messageBox");
+const charCount = document.getElementById("charCount");
+const repostPanel = document.getElementById("repostPanel");
+const composerPanel = document.getElementById("composerPanel");
+const composerHeading = document.getElementById("composerHeading");
+
+posts.forEach((post, i) => {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "post-option";
+  b.innerHTML = `<span class="post-icon">${post.icon}</span><span><b>${post.name}</b><small>${post.theme}</small></span><span class="chevron">›</span>`;
+  b.onclick = () => {
+    selectedPost = post;
+    document.querySelectorAll(".post-option").forEach(x => x.classList.remove("selected"));
+    b.classList.add("selected");
+    step2.classList.remove("disabled");
+    step3.classList.add("disabled");
+    selectedAction = null;
+    document.querySelectorAll(".action").forEach(x => x.classList.remove("selected"));
+  };
+  postList.appendChild(b);
+});
+
+function updateCount(){ charCount.textContent = `${messageBox.value.length} / 280`; }
+messageBox.addEventListener("input", updateCount);
+
+function setSuggestion() {
+  if (!selectedAction || selectedAction === "repost") return;
+  const arr = templates[selectedAction];
+  messageBox.value = arr[suggestionIndex % arr.length];
+  suggestionIndex++;
+  updateCount();
+}
+
+document.querySelectorAll(".action").forEach(btn => {
+  btn.onclick = () => {
+    selectedAction = btn.dataset.action;
+    document.querySelectorAll(".action").forEach(x => x.classList.remove("selected"));
+    btn.classList.add("selected");
+    step3.classList.remove("disabled");
+    const isRepost = selectedAction === "repost";
+    repostPanel.classList.toggle("hidden", !isRepost);
+    composerPanel.classList.toggle("hidden", isRepost);
+    composerHeading.textContent = isRepost ? "Ready to repost" : "Your campaign message";
+    if (!isRepost) setSuggestion();
+  };
+});
+
+document.getElementById("newSuggestion").onclick = setSuggestion;
+
+document.getElementById("copyButton").onclick = async () => {
+  const text = selectedAction === "repost" ? selectedPost?.url : messageBox.value;
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast("Copied to clipboard");
+  } catch {
+    messageBox.select();
+    document.execCommand("copy");
+    showToast("Copied to clipboard");
+  }
+};
+
+document.getElementById("openXButton").onclick = () => {
+  if (!selectedPost || !selectedAction) return;
+  let target = selectedPost.url;
+  if (selectedAction === "reply") {
+    target = "https://x.com/intent/tweet?in_reply_to=" + selectedPost.url.split("/").pop() + "&text=" + encodeURIComponent(messageBox.value);
+  } else if (selectedAction === "quote") {
+    target = "https://x.com/intent/post?text=" + encodeURIComponent(messageBox.value + "\n\n" + selectedPost.url);
+  }
+  window.open(target, "_blank", "noopener,noreferrer");
+};
+
+function showToast(text) {
+  const t = document.getElementById("toast");
+  t.textContent = text; t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2200);
+}
+
+</script>
+<script>
+(function(){
+  function validXPost(url){
+    try{
+      const u = new URL(url.trim());
+      const host = u.hostname.toLowerCase().replace(/^www\./,'');
+      return (host === 'x.com' || host === 'twitter.com' || host === 'mobile.twitter.com') &&
+             /\/[^\/]+\/status\/\d+/.test(u.pathname);
+    }catch(e){ return false; }
+  }
+
+  function addCustomPost(){
+    const input = document.getElementById('customPostUrl');
+    const url = input.value.trim();
+    if(!validXPost(url)){
+      if(typeof showToast === 'function') showToast('Please enter a valid X post link');
+      else alert('Please enter a valid X post link');
+      return;
+    }
+    if(document.querySelector('.post-option[data-custom-url="'+CSS.escape(url)+'"]')){
+      if(typeof showToast === 'function') showToast('This post is already added');
+      return;
+    }
+
+    const post = {name:'Added X Post', url:url, theme:'Custom campaign post', icon:'＋'};
+    const list = document.getElementById('postList');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'post-option';
+    b.dataset.customUrl = url;
+    b.innerHTML = `<span class="post-icon">${post.icon}</span><span><b>${post.name}</b><small>${post.theme}</small></span><span class="chevron">›</span>`;
+
+    b.onclick = () => {
+      window.selectedPost = post;
+      document.querySelectorAll('.post-option').forEach(x => x.classList.remove('selected'));
+      b.classList.add('selected');
+      const step2 = document.getElementById('step2');
+      const step3 = document.getElementById('step3');
+      if(step2) step2.classList.remove('disabled');
+      if(step3) step3.classList.add('disabled');
+      window.selectedAction = null;
+      document.querySelectorAll('.action').forEach(x => x.classList.remove('selected'));
+      if(typeof showToast === 'function') showToast('Custom X post selected');
+    };
+
+    list.appendChild(b);
+    input.value = '';
+    b.click();
+    if(typeof showToast === 'function') showToast('X post added successfully');
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('addCustomPost');
+    const input = document.getElementById('customPostUrl');
+    if(btn) btn.addEventListener('click', addCustomPost);
+    if(input) input.addEventListener('keydown', e => {
+      if(e.key === 'Enter'){ e.preventDefault(); addCustomPost(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
