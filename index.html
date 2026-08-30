@@ -221,7 +221,7 @@ body{font-family:Inter,Arial,sans-serif!important}
         <div class="step-content">
           <h3 id="composerHeading">Your campaign message</h3>
           <div id="repostPanel" class="repost-panel hidden">
-            <p>A standard Repost does not need additional text. X will ask you to confirm the Repost.</p>
+            <p>Continue to the original X post, then tap the <strong>Repost</strong> icon in X and confirm. A standard repost does not need additional text.</p>
           </div>
           <div id="composerPanel">
             <textarea id="messageBox" maxlength="280" aria-label="Campaign message"></textarea>
@@ -283,6 +283,7 @@ const charCount = document.getElementById("charCount");
 const repostPanel = document.getElementById("repostPanel");
 const composerPanel = document.getElementById("composerPanel");
 const composerHeading = document.getElementById("composerHeading");
+const openXButton = document.getElementById("openXButton");
 
 posts.forEach((post, i) => {
   const b = document.createElement("button");
@@ -321,6 +322,7 @@ document.querySelectorAll(".action").forEach(btn => {
     repostPanel.classList.toggle("hidden", !isRepost);
     composerPanel.classList.toggle("hidden", isRepost);
     composerHeading.textContent = isRepost ? "Ready to repost" : "Your campaign message";
+    openXButton.textContent = isRepost ? "Open post on X ↗" : "Continue to X ↗";
     if (!isRepost) setSuggestion();
   };
 });
@@ -343,11 +345,22 @@ document.getElementById("openXButton").onclick = () => {
   if (!selectedPost || !selectedAction) return;
   let target = selectedPost.url;
   if (selectedAction === "reply") {
-    target = "https://x.com/intent/tweet?in_reply_to=" + selectedPost.url.split("/").pop() + "&text=" + encodeURIComponent(messageBox.value);
+    const statusId = selectedPost.url.match(/\/status\/(\d+)/)?.[1];
+    if (!statusId) {
+      showToast("Could not identify the X post");
+      return;
+    }
+    target = "https://x.com/intent/post?in_reply_to=" + statusId + "&text=" + encodeURIComponent(messageBox.value);
   } else if (selectedAction === "quote") {
     target = "https://x.com/intent/post?text=" + encodeURIComponent(messageBox.value + "\n\n" + selectedPost.url);
+  } else if (selectedAction === "repost") {
+    // X does not provide a reliable public web intent URL that directly confirms
+    // a repost. Open the original post so the user can use X's native Repost button.
+    target = selectedPost.url;
   }
-  window.open(target, "_blank", "noopener,noreferrer");
+  // Use a direct navigation. This is more reliable on GitHub Pages and
+  // mobile browsers than opening a new window/tab.
+  window.location.assign(target);
 };
 
 function showToast(text) {
@@ -390,14 +403,14 @@ function showToast(text) {
     b.innerHTML = `<span class="post-icon">${post.icon}</span><span><b>${post.name}</b><small>${post.theme}</small></span><span class="chevron">›</span>`;
 
     b.onclick = () => {
-      window.selectedPost = post;
+      selectedPost = post;
       document.querySelectorAll('.post-option').forEach(x => x.classList.remove('selected'));
       b.classList.add('selected');
       const step2 = document.getElementById('step2');
       const step3 = document.getElementById('step3');
       if(step2) step2.classList.remove('disabled');
       if(step3) step3.classList.add('disabled');
-      window.selectedAction = null;
+      selectedAction = null;
       document.querySelectorAll('.action').forEach(x => x.classList.remove('selected'));
       if(typeof showToast === 'function') showToast('Custom X post selected');
     };
