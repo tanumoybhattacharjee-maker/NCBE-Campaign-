@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCBE Campaign Generator — 5-Day Banking Now</title>
+<style>
+:root{
+  --blue:#005baa;
+  --blue-dark:#003b73;
+  --blue-light:#eaf4ff;
+  --gold:#f5b400;
+  --text:#132238;
+  --muted:#5d6b7a;
+  --bg:#f4f7fb;
+  --card:#fff;
+  --border:#d9e2ec;
+  --shadow:0 10px 30px rgba(0,55,110,.10);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--text);background:linear-gradient(180deg,#eaf4ff 0,#f7f9fc 340px,#f4f7fb 100%);
+}
+header{
+  background:linear-gradient(135deg,var(--blue-dark),var(--blue));
+  color:white;padding:24px 16px 30px;position:relative;overflow:hidden;
+}
+header:after{
+  content:"";position:absolute;width:260px;height:260px;border-radius:50%;
+  right:-100px;top:-130px;background:rgba(255,255,255,.08);
+}
+.brand{max-width:980px;margin:auto;position:relative;z-index:1}
+.brand-row{display:flex;align-items:center;gap:14px}
+.logo{
+  width:58px;height:58px;border-radius:50%;background:white;color:var(--blue);
+  display:grid;place-items:center;font-weight:900;font-size:19px;border:4px solid rgba(255,255,255,.55);
+}
+h1{font-size:clamp(24px,5vw,38px);margin:0 0 4px}
+.subtitle{margin:0;color:#dceeff;font-size:15px}
+.hashtags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);padding:7px 11px;border-radius:999px;font-weight:700;font-size:13px}
+main{max-width:980px;margin:-18px auto 50px;padding:0 14px;position:relative}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
+.card h2{font-size:19px;margin:0 0 14px}
+label{display:block;font-weight:750;font-size:13px;margin-bottom:7px}
+input,textarea,select{
+  width:100%;border:1px solid var(--border);border-radius:12px;padding:12px 13px;
+  font:inherit;color:var(--text);background:#fff;outline:none;
+}
+input:focus,textarea:focus,select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,91,170,.10)}
+textarea{min-height:110px;resize:vertical}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){.grid{grid-template-columns:1fr}}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+@media(max-width:680px){.actions{grid-template-columns:1fr}}
+button{
+  border:0;border-radius:12px;padding:12px 14px;font:inherit;font-weight:800;cursor:pointer;
+  transition:.15s transform,.15s opacity;min-height:46px;
+}
+button:hover{transform:translateY(-1px)}
+.primary{background:var(--blue);color:white}
+.secondary{background:#edf4fb;color:var(--blue-dark);border:1px solid #d5e5f5}
+.gold{background:var(--gold);color:#17202a}
+.dark{background:#17202a;color:white}
+.small{font-size:12px;color:var(--muted);line-height:1.5}
+.notice{background:var(--blue-light);border-left:4px solid var(--blue);padding:12px 14px;border-radius:10px;margin-top:12px;font-size:13px;line-height:1.5}
+.preview{
+  background:#fff;border:1px solid var(--border);border-radius:14px;padding:15px;
+  white-space:pre-wrap;line-height:1.5;min-height:130px
+}
+.counter{display:flex;justify-content:space-between;margin-top:7px;font-size:12px;color:var(--muted)}
+.mode-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mode-buttons button.active{background:var(--blue);color:#fff}
+.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:520px){.result-actions{grid-template-columns:1fr}}
+.hidden{display:none}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:5px 15px 35px}
+a{color:var(--blue)}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="brand-row">
+      <div class="logo">NCBE</div>
+      <div>
+        <h1>5-Day Banking Now</h1>
+        <p class="subtitle">NCBE Social Media Campaign Generator</p>
+      </div>
+    </div>
+    <div class="hashtags">
+      <span class="tag">#5DayBankingNow</span>
+      <span class="tag">#NCBE</span>
+      <span class="tag">#ncbeofficial</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>1. Add the X post you want to engage with</h2>
+    <label for="postUrl">X post link</label>
+    <input id="postUrl" placeholder="https://x.com/username/status/1234567890">
+    <div class="notice">
+      Paste a public X post URL. The generator will use it for Reply, Quote and Repost actions.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>2. Choose your campaign action</h2>
+    <div class="mode-buttons">
+      <button class="secondary active" data-mode="reply" onclick="setMode('reply')">💬 Reply</button>
+      <button class="secondary" data-mode="quote" onclick="setMode('quote')">🔁 Quote Post</button>
+      <button class="secondary" data-mode="repost" onclick="setMode('repost')">🔄 Repost</button>
+    </div>
+    <div class="actions">
+      <button class="primary" onclick="generate()">✨ Generate</button>
+      <button class="secondary" onclick="generate(true)">🎲 Another message</button>
+      <button class="gold" onclick="copyResult()">📋 Copy</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>3. Your campaign message</h2>
+    <div id="result" class="preview">Choose an action and tap “Generate”.</div>
+    <div class="counter"><span id="counter">0 / 280 characters</span><span id="status"></span></div>
+    <div class="result-actions">
+      <button class="dark" onclick="openX()">Continue to X →</button>
+      <button class="secondary" onclick="copyResult()">Copy message</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Quick campaign messages</h2>
+    <p class="small">Use these when you want to post directly from your own account. Each message is intentionally different so members can participate without posting identical text.</p>
+    <div id="quickList"></div>
+  </section>
+</main>
+
+<footer>
+  NCBE Campaign Generator • 5-Day Banking Now<br>
+  Use the tool responsibly and review your message before posting.
+</footer>
+
+<script>
+const HASHTAGS = "#5DayBankingNow #NCBE #ncbeofficial";
+let mode = "reply";
+let currentText = "";
+
+const replyMessages = [
+"Banking is about trust, service and accessibility. The voice of bank employees is an important part of the conversation on the future of banking. " + HASHTAGS,
+"Strong banking institutions support customers, communities and the wider economy. The future of banking deserves an informed public conversation. " + HASHTAGS,
+"Technology is transforming banking, but customer service and human connection remain essential. Let’s keep people at the heart of banking. " + HASHTAGS,
+"The future of banking should combine technology with accessibility, accountability and quality customer service. Bank employees have an important role in that journey. " + HASHTAGS,
+"Banking reaches millions of people every day. The discussion about its future should include the experiences and voices of those who serve customers every day. " + HASHTAGS,
+"Modern banking needs modern solutions—but also strong human service. A people-centric banking system remains essential. " + HASHTAGS
+];
+
+const quoteMessages = [
+"The future of banking is not only about technology. It is also about trust, accessibility and the people who make banking work every day. " + HASHTAGS,
+"An important conversation on banking. Change is inevitable, but the focus must remain on customers, service and a strong banking system. " + HASHTAGS,
+"Banking plays a vital role in the economy and in everyday life. Its future deserves participation, discussion and informed engagement. " + HASHTAGS,
+"From branches to digital platforms, banking is evolving. The voices of customers and bank employees should remain part of that evolution. " + HASHTAGS,
+"Strong banking depends on strong institutions and committed people. The conversation about the future of banking matters to everyone. " + HASHTAGS
+];
+
+const directMessages = [
+"Banking is more than transactions—it is trust, accessibility and service to every citizen. " + HASHTAGS,
+"Strong banks support a strong economy. Let’s keep banking people-centric, accessible and responsive. " + HASHTAGS,
+"Every branch, every employee and every customer is part of the banking ecosystem. The voice of bank employees matters. " + HASHTAGS,
+"Technology can transform banking, but it should complement human service and customer trust. " + HASHTAGS,
+"Let the conversation on the future of banking be heard. Participate. Share. Engage. " + HASHTAGS,
+"Banking is changing rapidly. The people who serve customers every day have an important perspective on that change. " + HASHTAGS
+];
+
+function setMode(newMode){
+  mode = newMode;
+  document.querySelectorAll(".mode-buttons button").forEach(b=>{
+    b.classList.toggle("active", b.dataset.mode === mode);
+  });
+  generate();
+}
+
+function getMessages(){
+  if(mode==="reply") return replyMessages;
+  if(mode==="quote") return quoteMessages;
+  return directMessages;
+}
+
+function generate(random=false){
+  const messages = getMessages();
+  let idx = Math.floor(Math.random()*messages.length);
+  if(random && currentText){
+    let attempts=0;
+    while(messages[idx]===currentText && attempts<10){ idx=Math.floor(Math.random()*messages.length); attempts++; }
+  }
+  currentText = messages[idx];
+  render();
+}
+
+function render(){
+  const el=document.getElementById("result");
+  el.textContent=currentText;
+  document.getElementById("counter").textContent=`${currentText.length} / 280 characters`;
+  document.getElementById("status").textContent=currentText.length>280 ? "Too long for a standard post" : "Ready";
+}
+
+function copyResult(){
+  if(!currentText){ generate(); }
+  navigator.clipboard.writeText(currentText).then(()=>{
+    document.getElementById("status").textContent="Copied ✓";
+    setTimeout(()=>render(),1300);
+  }).catch(()=>{
+    const ta=document.createElement("textarea");ta.value=currentText;document.body.appendChild(ta);
+    ta.select();document.execCommand("copy");ta.remove();
+    document.getElementById("status").textContent="Copied ✓";
+  });
+}
+
+function extractTweetId(url){
+  if(!url) return "";
+  const m=url.match(/status\/(\d+)/i);
+  return m ? m[1] : "";
+}
+
+function cleanPostUrl(url){
+  try{
+    const u=new URL(url);
+    if(!/(^|\.)x\.com$|(^|\.)twitter\.com$/i.test(u.hostname)) return "";
+    return u.href;
+  }catch(e){return ""}
+}
+
+function openX(){
+  const raw=document.getElementById("postUrl").value.trim();
+  const postUrl=cleanPostUrl(raw);
+  const tweetId=extractTweetId(raw);
+
+  if(mode==="repost"){
+    if(!tweetId){
+      alert("Please paste a valid X post URL containing /status/123...");
+      return;
+    }
+    window.open("https://x.com/intent/retweet?tweet_id="+encodeURIComponent(tweetId),"_blank");
+    return;
+  }
+
+  if(mode==="reply"){
+    if(tweetId){
+      const url="https://x.com/intent/tweet?in_reply_to="+encodeURIComponent(tweetId)+"&text="+encodeURIComponent(currentText);
+      window.open(url,"_blank");
+    }else{
+      window.open("https://x.com/compose/post?text="+encodeURIComponent(currentText),"_blank");
+    }
+    return;
+  }
+
+  // Quote post: X supports composing a post with the original post URL included.
+  if(postUrl){
+    const quoteText=(currentText+" "+postUrl).trim();
+    window.open("https://x.com/compose/post?text="+encodeURIComponent(quoteText),"_blank");
+  }else{
+    window.open("https://x.com/compose/post?text="+encodeURIComponent(currentText),"_blank");
+  }
+}
+
+function buildQuick(){
+  const box=document.getElementById("quickList");
+  directMessages.forEach((msg,i)=>{
+    const row=document.createElement("div");
+    row.style.cssText="display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-top:1px solid var(--border);padding:12px 0";
+    const text=document.createElement("div");
+    text.style.cssText="font-size:13px;line-height:1.45";
+    text.textContent=msg;
+    const btn=document.createElement("button");
+    btn.className="secondary";btn.textContent="Copy";
+    btn.onclick=()=>navigator.clipboard.writeText(msg).then(()=>{btn.textContent="Copied ✓";setTimeout(()=>btn.textContent="Copy",1000)});
+    row.appendChild(text);row.appendChild(btn);box.appendChild(row);
+  });
+}
+
+document.getElementById("postUrl").addEventListener("input", ()=>{
+  const val=document.getElementById("postUrl").value.trim();
+  if(val && !cleanPostUrl(val)){
+    document.getElementById("status").textContent="Check the X post URL";
+  }else{
+    document.getElementById("status").textContent="";
+  }
+});
+
+buildQuick();
+generate();
+</script>
+</body>
+</html>
