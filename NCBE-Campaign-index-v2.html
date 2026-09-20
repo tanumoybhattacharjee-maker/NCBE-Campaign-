@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NCBE Campaign Generator — 5-Day Banking Now</title>
+<style>
+:root{--blue:#005baa;--blue-dark:#003b73;--blue-light:#eaf4ff;--gold:#f5b400;--text:#132238;--muted:#5d6b7a;--bg:#f4f7fb;--card:#fff;--border:#d9e2ec;--shadow:0 10px 30px rgba(0,55,110,.10)}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--text);background:linear-gradient(180deg,#eaf4ff 0,#f7f9fc 340px,#f4f7fb 100%)}
+header{background:linear-gradient(135deg,var(--blue-dark),var(--blue));color:#fff;padding:24px 16px 30px;position:relative;overflow:hidden}
+header:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-130px;background:rgba(255,255,255,.08)}
+.brand{max-width:980px;margin:auto;position:relative;z-index:1}.brand-row{display:flex;align-items:center;gap:14px}
+.logo{width:78px;height:78px;border-radius:18px;background:#fff;color:var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:900;border:3px solid rgba(255,255,255,.65);box-shadow:0 5px 15px rgba(0,0,0,.15)}
+.logo-mark{font-size:25px;line-height:20px;font-weight:950}.logo-text{font-size:13px;letter-spacing:1px;margin-top:5px}.ncbe-name{font-size:14px;letter-spacing:2px;font-weight:900;color:#ffd35a;margin-bottom:2px}
+h1{font-size:clamp(24px,5vw,38px);margin:0 0 4px}.subtitle{margin:0;color:#dceeff;font-size:15px}
+.hashtags{margin-top:20px;display:flex;flex-wrap:wrap;gap:8px}.tag{background:rgba(255,255,255,.13);border:1px solid rgba(255,255,255,.28);padding:7px 11px;border-radius:999px;font-weight:700;font-size:13px}
+main{max-width:980px;margin:-18px auto 50px;padding:0 14px;position:relative}.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}.card h2{font-size:19px;margin:0 0 14px}
+label{display:block;font-weight:750;font-size:13px;margin-bottom:7px}input{width:100%;border:1px solid var(--border);border-radius:12px;padding:12px 13px;font:inherit;color:var(--text);background:#fff;outline:none}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,91,170,.10)}
+.actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}@media(max-width:680px){.actions{grid-template-columns:1fr}}
+button{border:0;border-radius:12px;padding:12px 14px;font:inherit;font-weight:800;cursor:pointer;transition:.15s transform,.15s opacity;min-height:46px}button:hover{transform:translateY(-1px)}
+.primary{background:var(--blue);color:#fff}.secondary{background:#edf4fb;color:var(--blue-dark);border:1px solid #d5e5f5}.gold{background:var(--gold);color:#17202a}.dark{background:#17202a;color:#fff}
+.small{font-size:12px;color:var(--muted);line-height:1.5}.notice{background:var(--blue-light);border-left:4px solid var(--blue);padding:12px 14px;border-radius:10px;margin-top:12px;font-size:13px;line-height:1.5}
+.preview{background:#fff;border:1px solid var(--border);border-radius:14px;padding:15px;white-space:pre-wrap;line-height:1.5;min-height:115px;margin-top:12px}
+.counter{display:flex;justify-content:space-between;margin-top:7px;font-size:12px;color:var(--muted)}
+.mode-buttons{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mode-buttons button.active{background:var(--blue);color:#fff}
+.result-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}@media(max-width:520px){.result-actions{grid-template-columns:1fr}}
+.topic-row{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0}.topic{border:1px solid #d5e5f5;background:#f4f9ff;color:var(--blue-dark);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:800;cursor:pointer;min-height:auto}.topic.active{background:var(--blue);color:#fff}
+.fresh-intro{margin:0 0 12px;color:var(--muted);font-size:13px;line-height:1.5}
+.quick-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border-top:1px solid var(--border);padding:12px 0}.quick-text{font-size:13px;line-height:1.45}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:5px 15px 35px}
+</style>
+</head>
+<body>
+<header>
+<div class="brand">
+<div class="brand-row">
+<div class="logo" aria-label="NCBE logo"><span class="logo-mark">N</span><span class="logo-text">NCBE</span></div>
+<div><div class="ncbe-name">NCBE</div><h1>5-Day Banking Now</h1><p class="subtitle">Social Media Campaign Generator</p></div>
+</div>
+<div class="hashtags"><span class="tag">#5DayBankingNow</span><span class="tag">#NCBE</span><span class="tag">#ncbeofficial</span></div>
+</div>
+</header>
+
+<main>
+<section class="card">
+<h2>1. Generate a Fresh Tweet</h2>
+<p class="fresh-intro">Create an original X post related to the campaign. Choose a topic or let the generator vary the theme.</p>
+<div class="topic-row">
+<button class="topic active" data-topic="banking" onclick="setTopic('banking')">🏦 Banking</button>
+<button class="topic" data-topic="employees" onclick="setTopic('employees')">👥 Bank Employees</button>
+<button class="topic" data-topic="customers" onclick="setTopic('customers')">🤝 Customer Service</button>
+<button class="topic" data-topic="worklife" onclick="setTopic('worklife')">⚖️ #worklifebalance</button>
+<button class="topic" data-topic="auto" onclick="setTopic('auto')">🎲 Any Topic</button>
+</div>
+<div class="actions">
+<button class="primary" onclick="generateFresh()">✨ Generate Fresh Tweet</button>
+<button class="secondary" onclick="generateFresh(true)">🎲 Another Fresh Tweet</button>
+<button class="gold" onclick="copyFresh()">📋 Copy</button>
+</div>
+<div id="freshResult" class="preview">Choose a topic and generate a fresh tweet.</div>
+<div class="counter"><span id="freshCounter">0 / 280 characters</span><span id="freshStatus"></span></div>
+<div class="result-actions"><button class="dark" onclick="openFreshX()">Post on X →</button><button class="secondary" onclick="copyFresh()">Copy tweet</button></div>
+</section>
+
+<section class="card">
+<h2>2. Choose an action for an existing X post</h2>
+<div class="mode-buttons">
+<button class="secondary active" data-mode="reply" onclick="setMode('reply')">💬 Reply</button>
+<button class="secondary" data-mode="quote" onclick="setMode('quote')">🔁 Quote Post</button>
+<button class="secondary" data-mode="repost" onclick="setMode('repost')">🔄 Repost</button>
+</div>
+<div class="actions"><button class="primary" onclick="generate()">✨ Generate</button><button class="secondary" onclick="generate(true)">🎲 Another message</button><button class="gold" onclick="copyResult()">📋 Copy</button></div>
+</section>
+
+<section class="card">
+<h2>3. Your campaign message</h2>
+<div id="result" class="preview">Choose an action and tap “Generate”.</div>
+<div class="counter"><span id="counter">0 / 280 characters</span><span id="status"></span></div>
+<div class="result-actions"><button class="dark" onclick="openX()">Continue to X →</button><button class="secondary" onclick="copyResult()">Copy message</button></div>
+</section>
+
+<section class="card">
+<h2>4. Add an X post for Reply / Quote / Repost</h2>
+<label for="postUrl">X post link</label>
+<input id="postUrl" placeholder="https://x.com/username/status/1234567890">
+<div class="notice">Paste a public X post URL. Then choose Reply, Quote Post or Repost above and tap “Continue to X”.</div>
+</section>
+
+<section class="card">
+<h2>Quick campaign messages</h2>
+<p class="small">Use these when you want to post directly from your own account. Messages vary by theme, including work-life balance.</p>
+<div id="quickList"></div>
+</section>
+</main>
+
+<footer>NCBE • 5-Day Banking Now • Social Media Campaign Generator<br>Review your message before posting.</footer>
+
+<script>
+const HASHTAGS="#5DayBankingNow #NCBE #ncbeofficial";
+let mode="reply",currentText="",freshText="",freshTopic="banking";
+
+const freshTweets={
+banking:[
+"Banking is more than transactions. It is trust, accessibility and service to millions of citizens. The future of banking must keep people at the centre. "+HASHTAGS,
+"A strong banking system supports customers, communities and the wider economy. The conversation about the future of banking matters to everyone. "+HASHTAGS,
+"Technology is transforming banking, but trust and human service remain essential. Modern banking should combine both. "+HASHTAGS],
+employees:[
+"The people behind every branch, desk and customer interaction are an essential part of banking. Their voice matters in shaping the future of the industry. "+HASHTAGS,
+"Bank employees serve customers every day through changing times and changing technology. Their experience belongs in the conversation about the future of banking. "+HASHTAGS,
+"Strong banking institutions depend not only on technology, but also on committed people delivering service every day. "+HASHTAGS],
+customers:[
+"For customers, good banking means accessibility, reliability, trust and responsive service. Technology should strengthen that experience. "+HASHTAGS,
+"The future of banking should be measured not only by digital innovation, but also by the quality and accessibility of service customers receive. "+HASHTAGS,
+"Every banking innovation ultimately matters because of the customer it serves. Keep service, trust and accessibility at the heart of banking. "+HASHTAGS],
+worklife:[
+"A sustainable banking system needs sustainable workplaces too. Work-life balance helps create a healthier, more engaged and more effective workforce. #worklifebalance "+HASHTAGS,
+"Banking never stops evolving. Neither should our commitment to workplaces where employees can serve customers well while maintaining a healthy work-life balance. #worklifebalance "+HASHTAGS,
+"People are at the heart of banking. Supporting employee wellbeing and work-life balance is part of building a stronger workplace. #worklifebalance "+HASHTAGS]
+};
+
+const replyMessages=[
+"Banking is about trust, service and accessibility. The voice of bank employees is an important part of the conversation on the future of banking. "+HASHTAGS,
+"Strong banks support customers, communities and the wider economy. The future of banking deserves an informed public conversation. "+HASHTAGS,
+"Technology is transforming banking, but customer service and human connection remain essential. Let’s keep people at the heart of banking. "+HASHTAGS,
+"Modern banking needs modern solutions—but also strong human service. A people-centric banking system remains essential. "+HASHTAGS,
+"A sustainable banking system also needs sustainable workplaces. Supporting employee wellbeing and work-life balance strengthens service. #worklifebalance "+HASHTAGS
+];
+
+const quoteMessages=[
+"The future of banking is not only about technology. It is also about trust, accessibility and the people who make banking work every day. "+HASHTAGS,
+"An important conversation on banking. Change is inevitable, but the focus must remain on customers, service and a strong banking system. "+HASHTAGS,
+"Banking plays a vital role in the economy and in everyday life. Its future deserves participation, discussion and informed engagement. "+HASHTAGS,
+"From branches to digital platforms, banking is evolving. The voices of customers and bank employees should remain part of that evolution. "+HASHTAGS,
+"Work-life balance matters in banking too. A supported workforce is better placed to serve customers with focus and commitment. #worklifebalance "+HASHTAGS
+];
+
+const directMessages=[
+"Banking is more than transactions—it is trust, accessibility and service to every citizen. "+HASHTAGS,
+"Strong banks support a strong economy. Let’s keep banking people-centric, accessible and responsive. "+HASHTAGS,
+"Every branch, every employee and every customer is part of the banking ecosystem. The voice of bank employees matters. "+HASHTAGS,
+"Technology can transform banking, but it should complement human service and customer trust. "+HASHTAGS,
+"Let the conversation on the future of banking be heard. Participate. Share. Engage. "+HASHTAGS,
+"A sustainable banking system also needs sustainable workplaces. Supporting employee wellbeing and work-life balance strengthens service. #worklifebalance "+HASHTAGS
+];
+
+function setTopic(topic){freshTopic=topic;document.querySelectorAll(".topic").forEach(b=>b.classList.toggle("active",b.dataset.topic===topic));generateFresh()}
+function generateFresh(random=false){
+let pool=freshTopic==="auto"?Object.values(freshTweets).flat():(freshTweets[freshTopic]||freshTweets.banking);
+let i=Math.floor(Math.random()*pool.length),tries=0;
+while(random&&pool[i]===freshText&&tries<10){i=Math.floor(Math.random()*pool.length);tries++}
+freshText=pool[i];currentText=freshText;
+document.getElementById("freshResult").textContent=freshText;
+document.getElementById("freshCounter").textContent=freshText.length+" / 280 characters";
+document.getElementById("freshStatus").textContent=freshText.length>280?"Too long for a standard post":"Ready";
+}
+function copyFresh(){if(!freshText)generateFresh();navigator.clipboard.writeText(freshText).then(()=>{document.getElementById("freshStatus").textContent="Copied ✓";setTimeout(()=>generateFresh(false),900)}).catch(()=>fallbackCopy(freshText))}
+function openFreshX(){if(!freshText)generateFresh();window.open("https://x.com/compose/post?text="+encodeURIComponent(freshText),"_blank")}
+function setMode(newMode){mode=newMode;document.querySelectorAll(".mode-buttons button").forEach(b=>b.classList.toggle("active",b.dataset.mode===mode));generate()}
+function getMessages(){return mode==="reply"?replyMessages:mode==="quote"?quoteMessages:directMessages}
+function generate(random=false){
+let messages=getMessages(),i=Math.floor(Math.random()*messages.length),tries=0;
+while(random&&messages[i]===currentText&&tries<10){i=Math.floor(Math.random()*messages.length);tries++}
+currentText=messages[i];render()
+}
+function render(){document.getElementById("result").textContent=currentText;document.getElementById("counter").textContent=currentText.length+" / 280 characters";document.getElementById("status").textContent=currentText.length>280?"Too long for a standard post":"Ready"}
+function fallbackCopy(text){const ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand("copy");ta.remove()}
+function copyResult(){if(!currentText)generate();navigator.clipboard.writeText(currentText).then(()=>{document.getElementById("status").textContent="Copied ✓";setTimeout(render,1200)}).catch(()=>fallbackCopy(currentText))}
+function extractTweetId(url){const m=url.match(/status\/(\d+)/i);return m?m[1]:""}
+function cleanPostUrl(url){try{const u=new URL(url);if(!/(^|\.)x\.com$|(^|\.)twitter\.com$/i.test(u.hostname))return "";return u.href}catch(e){return ""}}
+function openX(){
+const raw=document.getElementById("postUrl").value.trim(),postUrl=cleanPostUrl(raw),tweetId=extractTweetId(raw);
+if(mode==="repost"){if(!tweetId){alert("Please paste a valid X post URL containing /status/123...");return}window.open("https://x.com/intent/retweet?tweet_id="+encodeURIComponent(tweetId),"_blank");return}
+if(mode==="reply"){window.open(tweetId?"https://x.com/intent/tweet?in_reply_to="+encodeURIComponent(tweetId)+"&text="+encodeURIComponent(currentText):"https://x.com/compose/post?text="+encodeURIComponent(currentText),"_blank");return}
+window.open("https://x.com/compose/post?text="+encodeURIComponent((currentText+" "+(postUrl||"")).trim()),"_blank")
+}
+function buildQuick(){
+const box=document.getElementById("quickList");
+directMessages.forEach(msg=>{
+const row=document.createElement("div");row.className="quick-row";
+const text=document.createElement("div");text.className="quick-text";text.textContent=msg;
+const btn=document.createElement("button");btn.className="secondary";btn.textContent="Copy";
+btn.onclick=()=>navigator.clipboard.writeText(msg).then(()=>{btn.textContent="Copied ✓";setTimeout(()=>btn.textContent="Copy",1000)}).catch(()=>fallbackCopy(msg));
+row.appendChild(text);row.appendChild(btn);box.appendChild(row)
+})
+}
+document.getElementById("postUrl").addEventListener("input",()=>{const v=document.getElementById("postUrl").value.trim();document.getElementById("status").textContent=v&&!cleanPostUrl(v)?"Check the X post URL":""});
+buildQuick();generate();generateFresh();
+</script>
+</body>
+</html>
